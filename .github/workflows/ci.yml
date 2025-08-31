@@ -24,5 +24,7 @@ jobs:
     steps:
       - name: Tap
         run: brew tap vivid-lapin/tap
-      - name: Install
-        run: brew install vivid-lapin/tap/ffmpeg
+      - name: Install ffmpeg
+        run: |
+          brew install vivid-lapin/tap/ffmpeg
+          ffmpeg -version
