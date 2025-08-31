@@ -40,7 +40,6 @@ class Mpv < Formula
   depends_on "mujs"
   depends_on "rubberband"
   depends_on "uchardet"
-  depends_on "vapoursynth"
   depends_on "vivid-lapin/tap/ffmpeg"
   depends_on "vulkan-loader"
   depends_on "zimg"
@@ -141,7 +140,6 @@ class Mpv < Formula
 
   test do
     system bin/"mpv", "--ao=null", "--vo=null", test_fixtures("test.wav")
-    assert_match "vapoursynth", shell_output("#{bin}/mpv --vf=help")
 
     # Make sure `pkgconf` can parse `mpv.pc` after the `inreplace`.
     system "pkgconf", "--print-errors", "mpv"
