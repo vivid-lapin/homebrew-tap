@@ -116,6 +116,7 @@ class Ffmpeg < Formula
       --enable-gpl
       --enable-libaom
       --enable-libaribcaption
+      --disable-libaribb24
       --enable-libbluray
       --enable-libdav1d
       --enable-libharfbuzz
