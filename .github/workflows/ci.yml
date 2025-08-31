@@ -26,5 +26,11 @@ jobs:
         run: brew tap vivid-lapin/tap
       - name: Install ffmpeg
         run: |
-          brew install vivid-lapin/tap/ffmpeg
+          brew install --build-bottle vivid-lapin/tap/ffmpeg
+          brew bottle vivid-lapin/tap/ffmpeg
           ffmpeg -version
+      - name: Upload bottles
+        uses: actions/upload-artifact@v4
+        with:
+          name: bottles
+          path: "*.bottle.*"
