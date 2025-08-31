@@ -16,19 +16,18 @@ class Ffmpeg < Formula
     regex(/href=.*?ffmpeg[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
-  conflicts_with cask: %w[
-    ffmpeg
-  ]
-
   bottle do
     root_url "https://github.com/vivid-lapin/homebrew-tap/releases/download/2025083101"
     rebuild 1
     sha256 arm64_sequoia: "fa5fc0d120e6809825681f02733e01aa63a1603dada3c4bc79c9e35e1dc907ab"
   end
 
+  conflicts_with cask: %w[
+    ffmpeg
+  ]
+
   depends_on "pkgconf" => :build
   depends_on "aom"
-  depends_on "libaribcaption"
   depends_on "dav1d"
   depends_on "fontconfig"
   depends_on "freetype"
@@ -37,6 +36,7 @@ class Ffmpeg < Formula
   depends_on "harfbuzz"
   depends_on "jpeg-xl"
   depends_on "lame"
+  depends_on "libaribcaption"
   depends_on "libass"
   depends_on "libbluray"
   depends_on "librist"

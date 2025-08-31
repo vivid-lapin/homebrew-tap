@@ -30,7 +30,6 @@ class Mpv < Formula
   depends_on "ninja" => :build
   depends_on "pkgconf" => [:build, :test]
   depends_on xcode: :build
-  depends_on "vivid-lapin/tap/ffmpeg"
   depends_on "jpeg-turbo"
   depends_on "libarchive"
   depends_on "libass"
@@ -42,8 +41,8 @@ class Mpv < Formula
   depends_on "rubberband"
   depends_on "uchardet"
   depends_on "vapoursynth"
+  depends_on "vivid-lapin/tap/ffmpeg"
   depends_on "vulkan-loader"
-  depends_on "yt-dlp"
   depends_on "zimg"
 
   uses_from_macos "zlib"
