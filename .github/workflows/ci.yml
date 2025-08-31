@@ -7,19 +7,7 @@ on:
 
 jobs:
   build-macos:
-    strategy:
-      matrix:
-        target:
-          - x86_64
-          - aarch64
-        include:
-          - target: x86_64
-            os: macos-latest
-          - target: aarch64
-            os: macos-latest
-      fail-fast: false
-
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
 
     steps:
       - name: Tap
@@ -29,8 +17,8 @@ jobs:
           brew install --build-bottle vivid-lapin/tap/ffmpeg
           brew bottle vivid-lapin/tap/ffmpeg
           ffmpeg -version
-      - name: Upload bottles
+      - name: Upload ffmpeg bottle
         uses: actions/upload-artifact@v4
         with:
-          name: bottles
-          path: "*.bottle.*"
+          name: ffmpeg-bottle
+          path: "ffmpeg*.bottle.*"
