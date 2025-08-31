@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-macos:
+    strategy:
+      matrix:
+        target:
+          - x86_64
+          - aarch64
+        include:
+          - target: x86_64
+            os: macos-latest
+          - target: aarch64
+            os: macos-latest
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Tap
+        run: brew tap vivid-lapin/tap
+      - name: Install
+        run: brew install vivid-lapin/tap/ffmpeg
