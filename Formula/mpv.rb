@@ -147,4 +147,3 @@ class Mpv < Formula
     system "pkgconf", "--print-errors", "mpv"
   end
 end
-

@@ -171,4 +171,3 @@ class Ffmpeg < Formula
     assert_path_exists mp4out
   end
 end
-
