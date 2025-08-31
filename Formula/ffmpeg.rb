@@ -17,9 +17,9 @@ class Ffmpeg < Formula
   end
 
   bottle do
-    root_url "https://github.com/vivid-lapin/homebrew-tap/releases/download/2025083101"
-    rebuild 1
-    sha256 arm64_sequoia: "fa5fc0d120e6809825681f02733e01aa63a1603dada3c4bc79c9e35e1dc907ab"
+    root_url "https://github.com/vivid-lapin/homebrew-tap/releases/download/2025083102"
+    rebuild 2
+    sha256 arm64_sequoia: "eeafb4361143fa1b09e861f22e27a73225524a1e5a0e588cee6e959fce2e86de"
   end
 
   depends_on "pkgconf" => :build
