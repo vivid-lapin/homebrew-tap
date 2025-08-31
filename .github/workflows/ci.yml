@@ -17,8 +17,18 @@ jobs:
           brew install --build-bottle vivid-lapin/tap/ffmpeg
           brew bottle vivid-lapin/tap/ffmpeg
           ffmpeg -version
+      - name: Install mpv
+        run: |
+          brew install --build-bottle vivid-lapin/tap/mpv
+          brew bottle vivid-lapin/tap/mpv
+          mpv --version
       - name: Upload ffmpeg bottle
         uses: actions/upload-artifact@v4
         with:
           name: ffmpeg-bottle
           path: "ffmpeg*.bottle.*"
+      - name: Upload mpv bottle
+        uses: actions/upload-artifact@v4
+        with:
+          name: mpv-bottle
+          path: "mpv*.bottle.*"
