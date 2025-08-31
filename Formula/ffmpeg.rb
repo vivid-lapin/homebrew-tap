@@ -20,16 +20,6 @@ class Ffmpeg < Formula
     ffmpeg
   ]
 
-  bottle do
-    sha256 arm64_sequoia: "a3c8c7d17e361171186713958b25b90a59805eff9ef6348b841249e4411ba63e"
-    sha256 arm64_sonoma:  "76310dc20a609f07064f77915e40e070b90769f1aeb76f2adebc57d186e91fc6"
-    sha256 arm64_ventura: "92325bbf93378bfc4cdfcc3fceabf4f3636a96562cd0f747026e55876e28f527"
-    sha256 sonoma:        "489500b48040b02e61d58385278feac226cc8cc38da46f0612da6c4d82c96453"
-    sha256 ventura:       "dab39c01c0a58c58f4a81abe01627671a4bdeeef24fbd338ff41a4c7f4ddc084"
-    sha256 arm64_linux:   "cc2c521c60d093f6648c12346ecfdd9e1d3fbc9cd836164a69053486a0f25cb0"
-    sha256 x86_64_linux:  "b8a35131d5142ccf5bc3925476fc2283550a697981034ef51ad76aaaade31a3a"
-  end
-
   depends_on "pkgconf" => :build
   depends_on "aom"
   depends_on "libaribcaption"
