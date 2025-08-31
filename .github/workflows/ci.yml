@@ -6,16 +6,26 @@ on:
       - master
 
 jobs:
-  ci:
+  audit:
     runs-on: macos-latest
 
     steps:
       - name: Tap
-        run: brew tap vivid-lapin/tap
+        run: brew tap ${{ github.repository }}
+      - name: Audit
+        run: brew audit ${{ github.repository }}
+  build:
+    runs-on: macos-latest
+
+    needs: [audit]
+
+    steps:
+      - name: Tap
+        run: brew tap ${{ github.repository }}
       - name: Install ffmpeg
         run: |
-          brew install --build-bottle vivid-lapin/tap/ffmpeg
-          brew bottle --root-url https://github.com/${{ github.repository }}/releases/download/release vivid-lapin/tap/ffmpeg
+          brew install --build-bottle ${{ github.repository }}/ffmpeg
+          brew bottle --root-url https://github.com/${{ github.repository }}/releases/download/replaceheretoreleasename ${{ github.repository }}/ffmpeg
           ffmpeg -version
       - name: Upload ffmpeg bottle
         uses: actions/upload-artifact@v4
@@ -24,11 +34,27 @@ jobs:
           path: "ffmpeg*.bottle.*"
       - name: Install mpv
         run: |
-          brew install --build-bottle vivid-lapin/tap/mpv
-          brew bottle --root-url https://github.com/${{ github.repository }}/releases/download/release vivid-lapin/tap/mpv
+          brew install --build-bottle ${{ github.repository }}/mpv
+          brew bottle --root-url https://github.com/${{ github.repository }}/releases/download/replaceheretoreleasename ${{ github.repository }}/mpv
           mpv --version
       - name: Upload mpv bottle
         uses: actions/upload-artifact@v4
         with:
           name: mpv-bottle
           path: "mpv*.bottle.*"
+  install:
+    runs-on: macos-latest
+
+    needs: [audit]
+
+    steps:
+      - name: Tap
+        run: brew tap ${{ github.repository }}
+      - name: Install ffmpeg
+        run: |
+          brew install ${{ github.repository }}/ffmpeg
+          ffmpeg -version
+      - name: Install mpv
+        run: |
+          brew install ${{ github.repository }}/mpv
+          mpv --version

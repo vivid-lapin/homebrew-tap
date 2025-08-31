@@ -75,6 +75,9 @@ class Mpv < Formula
   end
 
   conflicts_with cask: "stolendata-mpv", because: "both install `mpv` binaries"
+  conflicts_with cask: %w[
+    mpv
+  ]
 
   def install
     # LANG is unset by default on macOS and causes issues when calling getlocale
