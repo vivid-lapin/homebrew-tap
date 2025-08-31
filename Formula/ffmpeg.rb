@@ -22,10 +22,6 @@ class Ffmpeg < Formula
     sha256 arm64_sequoia: "fa5fc0d120e6809825681f02733e01aa63a1603dada3c4bc79c9e35e1dc907ab"
   end
 
-  conflicts_with cask: %w[
-    ffmpeg
-  ]
-
   depends_on "pkgconf" => :build
   depends_on "aom"
   depends_on "dav1d"
@@ -87,6 +83,8 @@ class Ffmpeg < Formula
   on_intel do
     depends_on "nasm" => :build
   end
+
+  conflicts_with cask: "ffmpeg"
 
   # Fix for QtWebEngine, do not remove
   # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=270209
