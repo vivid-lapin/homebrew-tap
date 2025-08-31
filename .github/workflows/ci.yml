@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build-macos:
+  ci:
     runs-on: macos-latest
 
     steps:
@@ -15,18 +15,18 @@ jobs:
       - name: Install ffmpeg
         run: |
           brew install --build-bottle vivid-lapin/tap/ffmpeg
-          brew bottle vivid-lapin/tap/ffmpeg
+          brew bottle --root-url https://github.com/${{ github.repository }}/releases/download/release vivid-lapin/tap/ffmpeg
           ffmpeg -version
-      - name: Install mpv
-        run: |
-          brew install --build-bottle vivid-lapin/tap/mpv
-          brew bottle vivid-lapin/tap/mpv
-          mpv --version
       - name: Upload ffmpeg bottle
         uses: actions/upload-artifact@v4
         with:
           name: ffmpeg-bottle
           path: "ffmpeg*.bottle.*"
+      - name: Install mpv
+        run: |
+          brew install --build-bottle vivid-lapin/tap/mpv
+          brew bottle --root-url https://github.com/${{ github.repository }}/releases/download/release vivid-lapin/tap/mpv
+          mpv --version
       - name: Upload mpv bottle
         uses: actions/upload-artifact@v4
         with:
