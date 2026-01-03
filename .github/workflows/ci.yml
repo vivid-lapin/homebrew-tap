@@ -43,6 +43,7 @@ jobs:
     needs: [audit]
 
     steps:
+      - uses: actions/checkout@v4
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
@@ -77,18 +78,16 @@ jobs:
         with:
           name: mpv-bottle-${{ matrix.os }}
           path: "mpv*.bottle.*"
-      - name: Get current time
-        uses: josStorer/get-current-time@v2
-        id: time
-        with:
-          format: "YYYYMMDDHHmm"
-          utcOffset: "+09:00"
+      - name: Get commit date
+        id: commit_date
+        run: |
+          echo "date=$(TZ=Asia/Tokyo git log -1 --format=%cd --date=format-local:'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
           files: "*.bottle.*"
-          name: ${{ steps.time.outputs.formattedTime }}
-          tag_name: ${{ steps.time.outputs.formattedTime }}
+          name: ${{ steps.commit_date.outputs.date }}
+          tag_name: ${{ steps.commit_date.outputs.date }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   install:
