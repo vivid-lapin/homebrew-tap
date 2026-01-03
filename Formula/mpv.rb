@@ -20,9 +20,9 @@ class Mpv < Formula
   end
 
   bottle do
-    root_url "https://github.com/vivid-lapin/homebrew-tap/releases/download/2025083102"
-    rebuild 2
-    sha256 arm64_sequoia: "e717bafd822c987fe66d3cd0bc3921648c0dc2cd828edca32d87fbf1cdc9ec63"
+    root_url "https://github.com/vivid-lapin/homebrew-tap/releases/download/2026010301"
+    rebuild 3
+    sha256 arm64_sequoia: "b6c1944a3cb60d05110209162f34e8e6e455ce4db82c976bb574ef9c7c9c2900"
   end
 
   depends_on "docutils" => :build
