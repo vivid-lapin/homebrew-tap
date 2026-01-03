@@ -5,9 +5,15 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   audit:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-15, macos-26]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Set up Homebrew
@@ -29,7 +35,10 @@ jobs:
           brew audit ${{ github.repository }}/ffmpeg
           brew audit ${{ github.repository }}/mpv
   build:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-15, macos-26]
+    runs-on: ${{ matrix.os }}
 
     needs: [audit]
 
@@ -56,7 +65,7 @@ jobs:
       - name: Upload ffmpeg bottle
         uses: actions/upload-artifact@v4
         with:
-          name: ffmpeg-bottle
+          name: ffmpeg-bottle-${{ matrix.os }}
           path: "ffmpeg*.bottle.*"
       - name: Install mpv
         run: |
@@ -66,10 +75,27 @@ jobs:
       - name: Upload mpv bottle
         uses: actions/upload-artifact@v4
         with:
-          name: mpv-bottle
+          name: mpv-bottle-${{ matrix.os }}
           path: "mpv*.bottle.*"
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: time
+        with:
+          format: "YYYYMMDDHHmm"
+          utcOffset: "+09:00"
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "*.bottle.*"
+          name: ${{ steps.time.outputs.formattedTime }}
+          tag_name: ${{ steps.time.outputs.formattedTime }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   install:
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-15, macos-26]
+    runs-on: ${{ matrix.os }}
 
     needs: [audit]
 
