@@ -93,6 +93,11 @@ class Ffmpeg < Formula
     sha256 "57e26caced5a1382cb639235f9555fc50e45e7bf8333f7c9ae3d49b3241d3f77"
   end
 
+  patch do
+    url "https://github.com/superfashi/FFmpeg/commit/4b1cd60a473d3cdd726c1e65f508a59b58e462d3.patch"
+    sha256 "ee8de293854ca70bcc57e0fa710a312e0f605b827e15cdb2551adc679257139b"
+  end
+
   def install
     # The new linker leads to duplicate symbol issue https://github.com/homebrew-ffmpeg/homebrew-ffmpeg/issues/140
     ENV.append "LDFLAGS", "-Wl,-ld_classic" if DevelopmentTools.clang_build_version >= 1500
