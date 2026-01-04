@@ -98,8 +98,8 @@ class Ffmpeg < Formula
   end
 
   patch do
-    url "https://gist.githubusercontent.com/ci7lus/18301865ab604576168a7a6884100ce3/raw/3f9886734bda443cad084de8ed719ce3da416cef/mmtlv2.patch"
-    sha256 "64a13ab846f574cd255962cda0a2a39f57d42008f44e3f4263f018c219381e52"
+    url "https://gist.githubusercontent.com/ci7lus/3196143b66ef42e7bc0abb28c9d7bc66/raw/b6d777d70cbfa3f1ffeadcba002ea7d8c4af4603/mmts.3.patch"
+    sha256 "ade544f8f00b32dc1cb696a755eaec3bd5e5d495a91e8bdf30274e9df1233e4e"
   end
 
   def install
