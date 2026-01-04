@@ -97,6 +97,11 @@ class Ffmpeg < Formula
     sha256 "3a5a67069089cd852819eb16d355317af2fd610a0254a79fdcd4f50129b2a6b6"
   end
 
+  patch do
+    url "https://gist.githubusercontent.com/ci7lus/18301865ab604576168a7a6884100ce3/raw/3f9886734bda443cad084de8ed719ce3da416cef/mmtlv2.patch"
+    sha256 "64a13ab846f574cd255962cda0a2a39f57d42008f44e3f4263f018c219381e52"
+  end
+
   def install
     # The new linker leads to duplicate symbol issue https://github.com/homebrew-ffmpeg/homebrew-ffmpeg/issues/140
     ENV.append "LDFLAGS", "-Wl,-ld_classic" if DevelopmentTools.clang_build_version >= 1500
