@@ -16,12 +16,6 @@ class Ffmpeg < Formula
     regex(/href=.*?ffmpeg[._-]v?(\d+(?:\.\d+)+)\.t/i)
   end
 
-  bottle do
-    root_url "https://github.com/vivid-lapin/homebrew-tap/releases/download/2026010301"
-    rebuild 3
-    sha256 arm64_sequoia: "84ac3817bc6404acee972fce51c8ae1a5d9babb20648ea9268e114e24119c5cd"
-  end
-
   depends_on "pkgconf" => :build
   depends_on "aom"
   depends_on "dav1d"
